@@ -1,0 +1,119 @@
+/** MAIN STYLES **/
+
+*, *:before, *:after {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+html, body, header,footer,nav,section,div,ul,li {
+    display:block;
+	margin:0;
+	padding:0;
+	width:100%;
+}
+html, body, section {
+    height:100%;
+}
+ul {
+	list-style-type:none;
+}
+legend {
+    font-size:1.2em;
+    font-weight:bold
+}
+h1, h2, h3, h4, h5 {
+	padding:0;
+	margin:0;
+}
+h1 {
+	font-size:2em;
+	line-height:2em;
+	text-decoration:underline;
+}
+h2 {
+	font-size:1.4em;
+	line-height:1.4em;
+}
+h3 {
+	font-size:1.2em;
+	line-height:1.2em;
+}
+h4 {
+	font-size:1.1em;
+	line-height:1.1em;
+}
+h5 {
+	font-size:1em;
+	line-height:1em;
+}
+html > body > div {
+	margin-left:auto;
+	margin-right:auto;
+    height:100%;
+}
+
+/** MAIN CLASSES **/
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display:table;
+}
+.clearfix:after {
+    clear:both;
+}
+.clearfix {
+    zoom:1;
+}
+
+.content-container {
+    height:100%;
+    padding:4px;
+}
+.headline-container {
+    text-align:center;
+    text-transform:uppercase;
+}
+.scrollbar-container {
+    position:relative;
+    overflow:hidden;
+    padding-right:14px;
+}
+.centered {
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.vertical-navigation {
+	padding:2px 8px;
+}
+
+/** APPLICATION SPECIFIC STYLES **/
+
+body {
+	background:#FFFFFF;
+}
+
+html > body > div {
+    width:1024px;
+}
+
+#main-navigation {
+	position:fixed;
+	width:200px;
+	float:left;
+	background:#FFF7EF;
+	border-right:1px solid #222222;
+	min-height:100%;
+}
+#main-navigation-counterpart {
+	padding:0 0 0 200px;
+	height:100%;
+}
+#main-content-container {
+	background:#FFF7EF;
+}
+
+#main-content-container, #main-content-container > section {
+	min-height:100%;
+}
