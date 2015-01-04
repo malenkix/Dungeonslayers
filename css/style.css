@@ -114,6 +114,6 @@ html > body > div {
 	background:#FFF7EF;
 }
 
-#main-content-container, #main-content-container > section {
+#main-content-container > section {
 	min-height:100%;
 }
