@@ -51,6 +51,14 @@ html > body > div {
 	margin-right:auto;
     height:100%;
 }
+textarea {
+	width:100%;
+	height:100%;
+	resize:none;
+}
+input {
+	width:100%;
+}
 
 /** MAIN CLASSES **/
 
@@ -73,6 +81,10 @@ html > body > div {
     text-align:center;
     text-transform:uppercase;
 }
+.label-container {
+    text-align:left;
+    padding:4px;
+}
 .scrollbar-container {
     position:relative;
     overflow:hidden;
@@ -84,10 +96,61 @@ html > body > div {
     margin-right:auto;
 }
 
-.vertical-navigation {
-	padding:2px 8px;
+.vertical-navigation li {
+	padding:4px 4px 0px 4px;
 }
 
+.columns-2 > section, .columns-2 > div {
+	width:50%;
+	float:left;
+}
+.columns-3 > section, .columns-3 > div {
+	width:33.333333%;
+	float:left;
+}
+.columns-4 > section, .columns-4 > div {
+	width:25%;
+	float:left;
+}
+.form-container > * {
+	padding:4px 4px 0px 4px;
+}
+.form-content-container.single-line {
+	height:26px;
+}
+.form-content-container > label {
+    float:left;
+}
+.form-content-container > .form-element-container {
+    width:100%;
+}
+.auto-sized {
+	height:100%;
+}
+.small-size {
+	width:4em;
+}
+.small-size + .auto-sized {
+    padding-left:4em;
+}
+.medium-size {
+	width:8em;
+}
+.medium-size + .auto-sized {
+    padding-left:8em;
+}
+.large-size {
+	width:12em;
+}
+.large-size + .auto-sized {
+    padding-left:12em;
+}
+.half-height {
+	height:50%;
+}
+.full-height {
+	height:100%;
+}
 /** APPLICATION SPECIFIC STYLES **/
 
 body {
@@ -95,7 +158,9 @@ body {
 }
 
 html > body > div {
-    width:1024px;
+    min-width:1024px;
+    width:100%;
+    min-height:400px;
 }
 
 #main-navigation {
@@ -105,6 +170,7 @@ html > body > div {
 	background:#FFF7EF;
 	border-right:1px solid #222222;
 	min-height:100%;
+	padding:4px;
 }
 #main-navigation-counterpart {
 	padding:0 0 0 200px;
@@ -116,4 +182,37 @@ html > body > div {
 
 #main-content-container > section {
 	min-height:100%;
+	padding-bottom:4px;
+}
+
+.content-area > .headline-container {
+	height:28px;
+}
+.content-area > .label-container {
+	height:28px;
+}
+.content-area > .content-area {
+    height:100%;
+    padding:4px;
+    padding-top:28px;
+    margin-top:-28px;
+}
+
+
+
+
+#folk-abilities-container {
+	padding-top:84px;
+    margin-top:-80px;
+    height:100%;
+}
+#hero-languages-container {
+	padding-top:56px;
+    margin-top:-52px;
+    height:100%;
+}
+#hero-history-container {
+	padding-top:29px;
+    margin-top:-26px;
+    height:100%;
 }
