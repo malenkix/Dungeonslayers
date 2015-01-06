@@ -11,21 +11,21 @@
         <script src="js/underscore.min.js" type="text/javascript"></script>
         <script src="js/knockout.min.js" type="text/javascript"></script>
         <script src="js/perfect-scrollbar.min.js" type="text/javascript"></script>
+        <script src="js/UI.js" type="text/javascript"></script>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/perfect-scrollbar.min.css">
 
     </head>
     <body>
-        
-        <div id="page-contianer" class="clearfix">
+        <div id="page-container" class="clearfix">
             <header>
 
             </header>
             <section id="page-content-container" class="clearfix">
                 <nav id="main-navigation" class="vertical-navigation-container">
                     <ul class="vertical-navigation">
-                        <li><a data-tab="character-overview" href="#">Allgemein</a></li>
-                        <li><a href="#">Eigenschaften</a></li>
+                        <li data-tab="character-overview" class="active">Allgemein</li>
+                        <li data-tab="character-history">Eigenschaften</li>
                         <li><a href="#">...</a></li>
                     </ul>
                 </nav>
@@ -83,6 +83,75 @@
                                     </div>
                                 </section>
                                 <section id="history-container" class="content-area">
+                                    <div class="form-container full-height">
+                                        <div class="form-content-container single-line">
+                                            <label class="medium-size">Geschichte:</label>
+                                        </div>
+                                        <div class="form-content-container" id="hero-history-container">
+                                            <div class="form-element-container auto-sized">
+                                                <textarea></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </section>
+
+                        <section id="character-history">
+                            <div class="content-container clearfix">
+                                <section id="hero-container" class="content-area half-height columns-2">
+                                    <div class="form-container full-height">
+                                        <div class="form-content-container single-line">
+                                            <label class="medium-size">Geburtsort:</label>
+                                            <div class="form-element-container auto-sized">
+                                                <input type="text" />
+                                            </div>
+                                        </div>
+                                        <div class="form-content-container single-line">
+                                            
+                                        </div>
+                                        <div class="form-content-container single-line">
+                                            <label class="medium-size">Größe:</label>
+                                            <div class="form-element-container auto-sized">
+                                                <input type="text" />
+                                            </div>
+                                        </div>
+                                        <div class="form-content-container single-line">
+                                            <label class="medium-size">Haarfarbe:</label>
+                                            <div class="form-element-container auto-sized">
+                                                <input type="text" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-container full-height">
+                                        <div class="form-content-container single-line">
+                                            <label class="medium-size">Geburtstag:</label>
+                                            <div class="form-element-container auto-sized">
+                                                <input type="text" />
+                                            </div>
+                                        </div>
+                                        <div class="form-content-container single-line">
+                                            <label class="medium-size">Alter:</label>
+                                            <div class="form-element-container auto-sized">
+                                                <input type="text" />
+                                            </div>
+                                        </div>
+                                        <div class="form-content-container single-line">
+                                            <label class="medium-size">Gewicht:</label>
+                                            <div class="form-element-container auto-sized">
+                                                <input type="text" />
+                                            </div>
+                                        </div>
+                                        <div class="form-content-container single-line">
+                                            <label class="medium-size">Augenfarbe:</label>
+                                            <div class="form-element-container auto-sized">
+                                                <input type="text" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="content-area half-height">
                                     <div class="form-container full-height">
                                         <div class="form-content-container single-line">
                                             <label class="medium-size">Geschichte:</label>

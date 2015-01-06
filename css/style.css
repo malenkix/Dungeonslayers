@@ -185,6 +185,9 @@ html > body > div {
 	padding-bottom:4px;
 }
 
+.content-area > div {
+	float:left;
+}
 .content-area > .headline-container {
 	height:28px;
 }
