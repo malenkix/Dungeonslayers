@@ -59,6 +59,11 @@ textarea {
 input {
 	width:100%;
 }
+input, button {
+	height:22px;
+	padding:0;
+	margin:0;
+}
 
 /** MAIN CLASSES **/
 
@@ -115,14 +120,17 @@ input {
 .form-container > * {
 	padding:4px 4px 0px 4px;
 }
-.form-content-container.single-line {
+.form-content-container.single-line, .form-element-container.single-line {
 	height:26px;
 }
-.form-content-container > label {
+.form-content-container > *:not(div), .form-element-container > *:not(div) {
     float:left;
 }
-.form-content-container > .form-element-container {
+.form-content-container > .form-element-container, .form-element-container > .form-element-container {
     width:100%;
+}
+.form-element-container > button {
+	float:right;
 }
 .auto-sized {
 	height:100%;
@@ -130,20 +138,29 @@ input {
 .small-size {
 	width:4em;
 }
-.small-size + .auto-sized {
+.small-size:not(button) + .auto-sized {
     padding-left:4em;
+}
+button.small-size + .auto-sized {
+	padding-right:4em;
 }
 .medium-size {
 	width:8em;
 }
-.medium-size + .auto-sized {
+.medium-size:not(button) + .auto-sized {
     padding-left:8em;
+}
+button.medium-size + .auto-sized {
+	padding-right:8em;
 }
 .large-size {
 	width:12em;
 }
-.large-size + .auto-sized {
+.large-size:not(button) + .auto-sized {
     padding-left:12em;
+}
+button.large-size + .auto-sized {
+	padding-right:12em;
 }
 .half-height {
 	height:50%;
