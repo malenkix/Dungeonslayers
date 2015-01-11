@@ -154,6 +154,60 @@ var DS = DS || {};
 		},
 	};
 
+	DS.Effect = function(bonus, attribute) {
+		this.initialize(bonus, attribute);
+	};
+
+	DS.Effect.prototype = {
+		constructor: DS.Effect,
+
+		initialize: function(bonus, attribute) {
+			this.bonus = bonus || 0;
+			this.attribute = attribute || '';
+		},
+
+		getBonus: function() {
+			return this.bonus;
+		},
+
+		getAttribute: function() {
+			return this.attribute;
+		},
+	};
+
+	DS.Effect.parse = function(str) {
+		var parts = _.compact(_.map(str.trim().split(' '), function(s) { return s.trim(); }));
+		if (parts.length >= 2) {
+			if (!_.isNaN(parseFloat(parts[0]))) {
+				return new DS.Effect(Number(parts.shift()), parts.join(' '));
+			}
+			else if (!_.isNaN(parseFloat(_.last(parts)))) {
+				return new DS.Effect(Number(parts.pop()), parts.join(' '));
+			}
+		}
+		return null;
+	};
+
+	DS.Talent = function(data) {
+		this.initialize(data);
+	};
+
+	DS.Talent.prototype = {
+		constructor: DS.Talent,
+
+		initialize: function(data) {
+
+
+			this.name         = data.name         || '';
+			this.description  = data.description  || '';
+			this.requirements = data.requirements || [];
+
+			this.maxLevel     = data.maxLevel     || null;
+
+			this.effects      = []
+		}
+	};
+
 	DS.Character = function(data, options) {
 		this.initialize(data);
 	};
@@ -186,7 +240,8 @@ var DS = DS || {};
 			return this.attributes;
 		},
 		getAttribute: function(attribute) {
-			return this.getAttributes()[attribute] || 0;
+			var value = this.getAttributes()[attribute];
+			return _.isNumber(value) ? value : null;
 		},
 		get: function(valueName) {
 			return this.getAttribute(valueName) || 0;
