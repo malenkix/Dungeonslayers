@@ -38,6 +38,15 @@ describe("DS.Effect", function() {
 			assertParse("Running -1.5", -1.5, "Running");
 		});
 
+		it("should accept attribute names with spaces", function() {
+			assertParse("+1 Spell power", 1, "Spell power");
+			assertParse("+3 Spell power", 3, "Spell power");
+			assertParse("-1 Spell power", -1, "Spell power");
+			assertParse("Spell power +1", 1, "Spell power");
+			assertParse("Spell power +1.5", 1.5, "Spell power");
+			assertParse("Super mega ultra nice spell power -1.5", -1.5, "Super mega ultra nice spell power");
+		});
+
 		it("should return null if the given string cannot be parsed to an effect", function() {
 			assert.isNull(DS.Effect.parse("Strength"));
 			assert.isNull(DS.Effect.parse("Strength Strength"));
