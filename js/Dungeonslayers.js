@@ -176,16 +176,50 @@ var DS = DS || {};
 	};
 
 	DS.Effect.parse = function(str) {
-		var parts = _.compact(_.map(str.trim().split(' '), function(s) { return s.trim(); }));
-		if (parts.length >= 2) {
-			if (!_.isNaN(parseFloat(parts[0]))) {
-				return new DS.Effect(Number(parts.shift()), parts.join(' '));
-			}
-			else if (!_.isNaN(parseFloat(_.last(parts)))) {
-				return new DS.Effect(Number(parts.pop()), parts.join(' '));
+		if (str instanceof DS.Effect) {
+			return str;
+		}
+		else if (typeof(str) === 'string') {
+			var parts = _.compact(_.map(str.trim().split(' '), function(s) { return s.trim(); }));
+			if (parts.length >= 2) {
+				if (!_.isNaN(parseFloat(parts[0]))) {
+					return new DS.Effect(Number(parts.shift()), parts.join(' '));
+				}
+				else if (!_.isNaN(parseFloat(_.last(parts)))) {
+					return new DS.Effect(Number(parts.pop()), parts.join(' '));
+				}
 			}
 		}
 		return null;
+	};
+
+	DS.Effects = function(items) {
+		this.items = _.isArray(items) ? _.map(items, function(item) { return DS.Effect.parse(item) || item; }) : [];
+	};
+
+	DS.Effects.prototype = {
+		constructor: DS.Effects,
+
+		getItems: function() {
+			return this.items;
+		},
+		getValueOfAttribute: function(name) {
+			var sum = 0;
+			_.each(this.getItems(), function(effect) {
+				if (effect instanceof DS.Effect && effect.getAttribute() === name) {
+					sum += effect.getBonus();
+				}
+			});
+			return sum;
+		},
+	};
+
+	DS.Effects.parse = function(str) {
+		var parts = _.compact(_.map(str.trim().split(/[\,\;]/), function(s) { return s.trim(); }));
+		var items = _.map(parts, function(str) {
+			return DS.Effect.parse(str) || str;
+		});
+		return new DS.Effects(items);
 	};
 
 	DS.Talent = function(data) {
@@ -196,16 +230,31 @@ var DS = DS || {};
 		constructor: DS.Talent,
 
 		initialize: function(data) {
-
+			data = _.isObject(data) ? data : {};
 
 			this.name         = data.name         || '';
 			this.description  = data.description  || '';
-			this.requirements = data.requirements || [];
+			this.effects      = _.isArray(data.effects) ? _.map(data.effects, function(effects) {
+				return new DS.Effects(effects);
+			}) : [];
+		},
 
-			this.maxLevel     = data.maxLevel     || null;
-
-			this.effects      = []
-		}
+		getName: function() {
+			return this.name;
+		},
+		getDescription: function() {
+			return this.description;
+		},
+		getEffects: function() {
+			return this.effects;
+		},
+		getMaxLevel: function() {
+			return this.getEffects().length;
+		},
+		getEffectsForLevel: function(level) {
+			var effects = this.getEffects();
+			return level >= 1 ? effects[Math.min(level - 1, effects.length -1)] : new DS.Effects();
+		},
 	};
 
 	DS.Character = function(data, options) {
@@ -239,12 +288,12 @@ var DS = DS || {};
 		getAttributes: function() {
 			return this.attributes;
 		},
-		getAttribute: function(attribute) {
+		getValueOfAttribute: function(attribute) {
 			var value = this.getAttributes()[attribute];
 			return _.isNumber(value) ? value : null;
 		},
 		get: function(valueName) {
-			return this.getAttribute(valueName) || 0;
+			return this.getValueOfAttribute(valueName) || 0;
 		},
 
 	};
